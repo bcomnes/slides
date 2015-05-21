@@ -1,0 +1,218 @@
+<!DOCTYPE html><html><head><title></title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type='text/css'>
+body {
+  font-family:'Helvetica';
+  letter-spacing:-5px;
+  background:#000;
+  background-size:100%;
+  color:#fff;
+  margin:0;
+  padding:0;
+  font-weight:bold;
+}
+
+h1, h2, h3, p {
+  margin:0;
+}
+
+em, a {
+  font-style:normal;
+  color:#8dbd0c;
+}
+
+a {
+  background:#34d0e7;
+  color:#000;
+  text-decoration:none;
+}
+
+img {
+  width:100%;
+}
+
+div {
+  cursor:pointer;
+  cursor:hand;
+  position:absolute;
+  top:0px;
+  left:0px;
+  padding:75px;
+  line-height:97%;
+}
+
+div.center {
+  text-align:center;
+}
+
+div.imageText {
+  text-shadow:0px 0px 5px rgba(0,0,0,0.2);
+}
+
+.yellow {
+  color: rgba(241,221, 63, 1);
+}
+
+.dark{
+  color:#474747;
+}
+
+.blue{
+  color:#34d0e7;
+}
+
+.red {
+  color:#CC342D;
+}
+
+.light-back {
+  background:#F0F1EB;
+}
+
+notes {
+    display:none;
+}
+</style><script type='text/javascript'>
+window.onload = function() {
+    var s = document.getElementsByTagName('div'), ti;
+    if (!s) return;
+    var big = { current: 0, forward: fwd, reverse: rev, go: go, length: s.length };
+    window.big = big;
+    function resize() {
+        var w = window.innerWidth, h = window.innerHeight, e = s[big.current];
+        e.style.fontSize = h + 'px';
+        for (var i = h - 2; e.offsetWidth > w || e.offsetHeight > h; i -= 2) {
+            e.style.fontSize = i + 'px';
+        }
+        e.style.marginTop = ((h - e.offsetHeight) / 2) + 'px';
+    }
+    function go(n) {
+        big.current = n;
+        var e = s[n], t = parseInt(e.getAttribute('data-time-to-next') || 0, 10),
+            notes = e.getElementsByTagName('notes');
+        document.body.className = e.getAttribute('data-bodyclass') || '';
+        for (var k = 0; k < s.length; k++) s[k].style.display = 'none';
+        e.style.display = 'inline';
+        for (k = 0; typeof console === 'object' && k < notes.length; k++) console.log('%c%s: %s', 'padding:5px;font-family:serif;font-size:18px;line-height:150%;', n, notes[k].innerHTML.trim());
+        if (e.firstChild && e.firstChild.nodeName === 'IMG') {
+            document.body.style.backgroundImage = 'url("' + e.firstChild.src + '")';
+            e.firstChild.style.display = 'none';
+            if ('classList' in e) e.classList.add('imageText');
+        } else {
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundColor = e.style.backgroundColor;
+        }
+        if (ti !== undefined) window.clearInterval(ti);
+        if (t > 0) ti = window.setTimeout(fwd, (t * 1000));
+        resize();
+        if (window.location.hash !== n) window.location.hash = n;
+        document.title = e.textContent || e.innerText;
+    }
+    document.onclick = function() { go(++big.current % (s.length)); };
+    function fwd() { go(Math.min(s.length - 1, ++big.current)); }
+    function rev() { go(Math.max(0, --big.current)); }
+    document.onkeydown = function(e) {
+        if (e.which === 39 || e.which === 34 || e.which === 40) fwd();
+        if (e.which === 37 || e.which === 33 || e.which === 38) rev();
+    };
+    document.ontouchstart = function(e) {
+        var x0 = e.changedTouches[0].pageX;
+        document.ontouchend = function(e2) {
+            var x1 = e2.changedTouches[0].pageX;
+            if (x1 - x0 < 0) fwd();
+            if (x1 - x0 > 0) rev();
+        };
+    };
+    function parse_hash() {
+        return Math.max(Math.min(s.length - 1,
+            parseInt(window.location.hash.substring(1), 10)), 0);
+    }
+    if (window.location.hash) big.current = parse_hash() || big.current;
+    window.onhashchange = function() {
+        var c = parse_hash();
+        if (c !== big.current) go(c);
+    };
+    window.onresize = resize;
+    go(big.current);
+};
+</script></head><body>
+<div>use &harr; to navigate</div>
+<div>javascript</div>
+<div>small modules</div>
+<div>and the <em>node</em> aesthetic</div>
+<div><a href="http://bret.io">Bret Comnes</a></div>
+<div>~</div>
+<div>what distinguishes <span class="yellow">JS</span>?</div>
+<div>1. Ubiquity</div>
+<div>2. Unique Module System</div>
+<div>...</div>
+<div>3. Small Modules</div>
+<div></div>
+<div><em>1. Ubiquity</em></div>
+<div><span class="yellow">JS</span> is everywhere</div>
+<div><span class="yellow">JS</span> is the language of the web</div>
+<div><span class="yellow">JS</span> is actually portable</div>
+<div><img src="img/java2.png" /></div>
+<div><span class="yellow">JS</span> runs on browsers</div>
+<div>in computers</div>
+<div>smart phones</div>
+<div><img src="img/smart.jpg" /><span class="blue">(all of them)</span></div>
+<div>Cars</div>
+<div><img src="img/dash.jpg" />Cars</div>
+<div>embedded devices</div>
+<div>its the <em>one</em> programming language your <em>entire</em> extended family has installed on their computer</div>
+<div class="dark"><img src="img/ide.png" />including multiple IDEs</div>
+<div><em>Worse is Better</em></div>
+<div>(vs "the right thing")</div>
+<div><span class="yellow">JS</span> isn't the best language</div>
+<div>but its simple, flexible and <em>available</em></div>
+<div><span class="yellow">JS</span> is fit for survival... and thats a good thing!</div>
+<div><a href="https://www.npmjs.com/">2. Unique Module System</a></div>
+<div>What is a <em>module</em>?</div>
+<div>A <em>module</em> is a <em>unit</em> of code that is <em>packaged</em> for reuse by other modules</div>
+<div>What is a <em>module system</em>?</div>
+<div>A <em>module system</em> = <em>conventions</em> and <em>programs</em> that facilitate module use</div>
+<div><span class="yellow">JS</span> didn't use to have a <em>module system</em></div>
+<div>when <em>node.js</em> came out...</div>
+<div><span class="yellow">JS</span> got a package manager and a module loading system: </div>
+<div><span><img src="img/npm-logo.svg" /></span></div>
+<div>npm did two things</div>
+<div><em>rapid</em> module authorship</div>
+<div><em>nested, local</em> module dependencies</div>
+<div>most programming languages have <span class="red">flat, global</span> module dependencies</div>
+<div>javascript + npm has <span class="blue">nested, local</span> dependencies</div>
+<div data-bodyclass="light-back"><a href="http://maxogden.com/nested-dependencies.html">Nested vs flat dependencies</a><img src="img/nested-vs-flat-deps.png" /></div>
+<div data-bodyclass="light-back"><a href="http://maxogden.com/nested-dependencies.html">Flat dependencies</a><img src="img/flat-deps.png" /></div>
+<div data-bodyclass="light-back"><a href="http://maxogden.com/nested-dependencies.html">Nested dependencies</a><img src="img/nested-deps.png" /></div>
+<div data-bodyclass="light-back"><img src="img/turtles.jpg" /><a href="https://github.com/substack/stream-handbook#dnode">Turtles all the way down</a></div>
+<div>No more <em>"DLL Hell"</em></div>
+<div>Your app gets the <em>modules it needs</em> at the <em>version it wants</em></div>
+<div><em>updating your deps</em> is <span class="red">no longer a threat</span> to other project deps</div>
+<div><a href="https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders">local dependencies by default</a></div>
+<div>all dependencies are installed locally to the project folder...</div>
+<div>...instead of a global dependency folder shared by all projects</div>
+<div>this decouples your project deps from all the other projects on your computer</div>
+<div data-bodyclass="light-back"><span class="dark">nested dependencies reduce the cost of using modules</span></div>
+<div>and writing and publishing them is quick and easy </div>
+<div><pre>$ npm init ; $ npm publish</pre></div>
+<div>reading and making changes is just as easy</div>
+<div><pre>$ git clone dep ; $ npm install ; $ npm test ; $ npm start</pre></div>
+<div>so lets use lots of them...</div>
+<div>3. Small Modles</div>
+<div><span class="yellow">JS</span> <span class="red">doesn't</span> have a <em>standard library</em></div>
+<div>pre-internet tradition was "do-everything" modules</div>
+<div>this tradition carried over to javascript</div>
+<div>Libraries like jQuery...</div>
+<div><img src="img/jquery.png" /></div>
+<div>...were the norm.</div>
+<div><q>...this <span class="red">kitchen-sink mentality</span> toward including a bunch of thematically-related but separable functionality into a single package...</q></div>
+<div><q>...appears to be an artifact for the <span class="red">difficulty of publishing and discovery</span> in a pre-github, pre-npm era.</q> - <a href="https://github.com/substack/browserify-handbook#module-philosophy">James Holiday</a></div>
+<div>This has several problems</div>
+<div><span class="yellow">&middot;</span> couples independent functionality to a single version number</div>
+<div data-bodyclass="light-back"><span class="dark">&middot;</span><img src="img/nested2.png" /></div>
+<div>...updating dependencies becomes a stressful ordeal</div>
+<div><span class="yellow">&middot;</span> large modules requires more knowledge and time when making contributions</div>
+<div><span class="yellow">&middot;</span> useful and reusable code get burred and left undocumented and unexposed</div>
+<div><q>our modules are <em>designed</em> in isolation, <em>documented</em> in isolation and can be <em>used</em> in isolation.</q> -<a href="https://gist.github.com/substack/68f8d502be42d5cd4942#comment-1365106">Jake Verbaten</a></div>
+<div>Small modules set you free</div>
+<div>They can compose together to make up</div>
+</body>
+</html>

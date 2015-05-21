@@ -1,0 +1,16 @@
+{
+  "name": "small-modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "big.js",
+  "dependencies": {
+    "watchify": "^3.2.1",
+    "budo": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
