@@ -205,14 +205,46 @@ window.onload = function() {
 <div>...were the norm.</div>
 <div><q>...this <span class="red">kitchen-sink mentality</span> toward including a bunch of thematically-related but separable functionality into a single package...</q></div>
 <div><q>...appears to be an artifact for the <span class="red">difficulty of publishing and discovery</span> in a pre-github, pre-npm era.</q> - <a href="https://github.com/substack/browserify-handbook#module-philosophy">James Holiday</a></div>
-<div>This has several problems</div>
+<div>This has a cascade of problems</div>
 <div><span class="yellow">&middot;</span> couples independent functionality to a single version number</div>
 <div data-bodyclass="light-back"><span class="dark">&middot;</span><img src="img/nested2.png" /></div>
 <div>...updating dependencies becomes a stressful ordeal</div>
+<div>people didn't update their deps!</div>
+<div>and it was all done by hand!!</div>
+<div></div>
 <div><span class="yellow">&middot;</span> large modules requires more knowledge and time when making contributions</div>
 <div><span class="yellow">&middot;</span> useful and reusable code get burred and left undocumented and unexposed</div>
 <div><q>our modules are <em>designed</em> in isolation, <em>documented</em> in isolation and can be <em>used</em> in isolation.</q> -<a href="https://gist.github.com/substack/68f8d502be42d5cd4942#comment-1365106">Jake Verbaten</a></div>
-<div>Small modules set you free</div>
-<div>They can compose together to make up</div>
+<div><span class="yellow">&middot;</span> policing thematic collections takes time and emotion</div>
+<div><span class="yellow">&middot;</span> large modules are excessive in most cases</div>
+<div>they bloat your apps</div>
+<div>µ</div>
+<div><span class="yellow">&middot;</span> small modules allow you to focus on a narrow problem domain</div>
+<div>so that it can solve that one problem well</div>
+<div>and can be improved internally, without affecting its dependees</div>
+<div>small modules give you what you need...</div>
+<div>...and nothing more</div>
+<div><span class="yellow">&middot;</span> small modules compose together</div>
+<div data-bodyclass="light-back"><span class="red">less frameworks</span><img src="img/mystery.gif" /></div>
+<div><em>more recipes</em></div>
+<div>monolithic frameworks trade away long term flexibility...</div>
+<div>for short term convenience</div>
+<div><q>When applications are done well, they are just the really application-specific, ...</q></div>
+<div><q>brackish residue that can't be so easily abstracted away...</q></div>
+<div><q>All the nice, reusable components sublimate away onto...</q></div>
+<div><q>github and npm...</q></div>
+<div><q>where everybody can collaborate to advance the commons.</q> - <a href="http://substack.net/how_I_write_modules">James Holiday</a></div>
+<div>small modules set you free</div>
+<div>The good news:</div>
+<div>Things are changing</div>
+<div>Small modules are catching on</div>
+<div>Large modules are breaking up...</div>
+<div>...into smaller modules</div>
+<div><a href="http://blog.npmjs.org/post/111475741445/publishing-your-jquery-plugin-to-npm-the-quick">Jquery is moving to npm</a></div>
+<div><span class="dark">_lowdash is modular</span><img src="img/lowdash.png" /></div>
+<div>CSS and HTML modules are adopting small module packing</div>
+<div>even "services" and infrastructure like databases are modularizing</div>
+<div>all of these become tools in your <span class="yellow">JS</span> toolbox</div>
+<div></div>
 </body>
 </html>
