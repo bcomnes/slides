@@ -1,5 +1,7 @@
 # Slides
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bcomnes/slides.svg)](https://greenkeeper.io/)
+
 Here are my slides, don't wear em out.
 
 - [small-modules](http://bret.io/slides/small-modules) 2015-05-21
